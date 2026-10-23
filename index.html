@@ -1,0 +1,540 @@
+
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblotek | Hyr ose Regjistrohu</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            background: #f3f6fb;
+            color: #142b4e;
+        }
+
+        .left-panel {
+            width: 40%;
+            min-height: 100vh;
+            background: linear-gradient(
+                rgba(10, 34, 64, 0.83),
+                rgba(10, 34, 64, 0.88)
+            ), url("https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1200&q=80");
+
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #70a7ff;
+        }
+
+        .welcome {
+            max-width: 400px;
+            margin: auto 0;
+        }
+
+        .welcome h1 {
+            font-size: 38px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .welcome p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #e0e8f4;
+        }
+
+        .left-footer {
+            font-size: 13px;
+            color: #d2dced;
+        }
+
+        .right-panel {
+            width: 60%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 25px;
+        }
+
+        .top-link {
+            width: 100%;
+            max-width: 440px;
+            text-align: right;
+            margin-bottom: 25px;
+            font-size: 14px;
+            color: #71809a;
+        }
+
+        .top-link button,
+        .form-options button {
+            border: none;
+            background: none;
+            color: #2463cf;
+            cursor: pointer;
+            font-size: inherit;
+        }
+
+        .card {
+            background: white;
+            width: 100%;
+            max-width: 440px;
+            padding: 38px 35px;
+            border-radius: 12px;
+            box-shadow: 0 10px 35px rgba(30, 60, 100, 0.09);
+        }
+
+        .card h2 {
+            font-size: 29px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #7a879c;
+            line-height: 1.6;
+            margin-bottom: 27px;
+            font-size: 15px;
+        }
+
+        .input-group {
+            margin-bottom: 17px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #d4ddeb;
+            border-radius: 8px;
+            outline: none;
+            font-size: 15px;
+            background: #fff;
+            transition: 0.2s;
+        }
+
+        .input-group input:focus {
+            border-color: #2864cc;
+            box-shadow: 0 0 0 3px rgba(40, 100, 204, 0.1);
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0 25px;
+            font-size: 13px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #71809a;
+        }
+
+        .remember input {
+            accent-color: #2864cc;
+        }
+
+        .main-btn {
+            width: 100%;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            background: #2861c5;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .main-btn:hover {
+            background: #174da8;
+            transform: translateY(-1px);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 25px 0;
+            color: #7a879c;
+            font-size: 13px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: #d9e1ed;
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #c6d3e6;
+            background: white;
+            border-radius: 8px;
+            color: #263b5c;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .google-btn:hover {
+            background: #f5f8fd;
+        }
+
+        .google-icon {
+            font-weight: bold;
+            color: #4285f4;
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        .terms {
+            font-size: 12px;
+            text-align: center;
+            color: #7a879c;
+            line-height: 1.8;
+            margin-top: 22px;
+        }
+
+        .terms a {
+            color: #2463cf;
+            text-decoration: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .message {
+            margin-top: 15px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #174da8;
+            overflow-wrap: anywhere;
+        }
+
+        .bottom-footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #7a879c;
+        }
+
+        @media (max-width: 800px) {
+            .left-panel {
+                display: none;
+            }
+
+            .right-panel {
+                width: 100%;
+                padding: 25px 18px;
+            }
+
+            .card {
+                padding: 30px 23px;
+            }
+
+            .top-link {
+                max-width: 440px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .card h2 {
+                font-size: 25px;
+            }
+
+            .form-options {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="left-panel">
+        <div class="logo">📖 Biblo<span>tek</span></div>
+
+        <div class="welcome">
+            <h1>Mirë se vini në Biblotek!</h1>
+            <p>
+                Lexo më shumë, mëso më shumë,
+                zbulo botë të reja.
+            </p>
+        </div>
+
+        <div class="left-footer">
+            Biblotek © 2026. Të gjitha të drejtat e rezervuara.
+        </div>
+    </section>
+
+    <main class="right-panel">
+
+        <div class="top-link">
+            <span id="topText">Nuk keni llogari?</span>
+            <button type="button" id="topButton" onclick="showSignup()">
+                Regjistrohu
+            </button>
+        </div>
+
+        <!-- LOGIN -->
+        <section class="card" id="loginCard">
+            <h2>Hyr në llogari</h2>
+            <p class="subtitle">
+                Përdorni email-in dhe fjalëkalimin tuaj
+                për të vazhduar.
+            </p>
+
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="loginEmail">Email</label>
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Shkruani email-in"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="loginPassword">Fjalëkalimi</label>
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Shkruani fjalëkalimin"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+
+                <div class="form-options">
+                    <label class="remember">
+                        <input type="checkbox" id="rememberMe">
+                        Më mbaj të kyçur
+                    </label>
+
+                    <button type="button" onclick="forgotPassword()">
+                        Keni harruar fjalëkalimin?
+                    </button>
+                </div>
+
+                <button type="submit" class="main-btn">Hyr</button>
+
+                <div class="divider">ose</div>
+
+                <button type="button" class="google-btn"
+                    onclick="googleNotice()">
+                    <span class="google-icon">G</span>
+                    Hyr me Google
+                </button>
+
+                <p class="message" id="loginMessage"
+                   aria-live="polite"></p>
+            </form>
+        </section>
+
+        <!-- SIGN UP -->
+        <section class="card hidden" id="signupCard">
+            <h2>Krijo llogari</h2>
+            <p class="subtitle">
+                Bashkohu me Biblotek dhe fillo të eksplorosh
+                një botë librash.
+            </p>
+
+            <form id="signupForm">
+                <div class="input-group">
+                    <label for="fullName">Emri i plotë</label>
+                    <input
+                        type="text"
+                        id="fullName"
+                        placeholder="Shkruani emrin e plotë"
+                        autocomplete="name"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="signupEmail">Email</label>
+                    <input
+                        type="email"
+                        id="signupEmail"
+                        placeholder="Shkruani email-in"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="signupPassword">Fjalëkalimi</label>
+                    <input
+                        type="password"
+                        id="signupPassword"
+                        placeholder="Minimumi 8 karaktere"
+                        autocomplete="new-password"
+                        minlength="8"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="confirmPassword">
+                        Konfirmo fjalëkalimin
+                    </label>
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Shkruaj përsëri fjalëkalimin"
+                        autocomplete="new-password"
+                        minlength="8"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="main-btn">
+                    Regjistrohu
+                </button>
+
+                <div class="divider">ose</div>
+
+                <button type="button" class="google-btn"
+                    onclick="googleNotice()">
+                    <span class="google-icon">G</span>
+                    Regjistrohu me Google
+                </button>
+
+                <p class="terms">
+                    Duke u regjistruar, ju pranoni
+                    <a href="#" onclick="return false;">
+                        Kushtet e Përdorimit
+                    </a>
+                    dhe
+                    <a href="#" onclick="return false;">
+                        Politikën e Privatësisë
+                    </a>.
+                </p>
+
+                <p class="message" id="signupMessage"
+                   aria-live="polite"></p>
+            </form>
+        </section>
+
+        <footer class="bottom-footer">
+            Biblotek © 2026. Të gjitha të drejtat e rezervuara.
+        </footer>
+
+    </main>
+
+    <script>
+        function showSignup() {
+            document.getElementById("loginCard").classList.add("hidden");
+            document.getElementById("signupCard").classList.remove("hidden");
+
+            document.getElementById("topText").textContent =
+                "Keni tashmë llogari?";
+
+            const button = document.getElementById("topButton");
+            button.textContent = "Hyr";
+            button.onclick = showLogin;
+        }
+
+        function showLogin() {
+            document.getElementById("signupCard").classList.add("hidden");
+            document.getElementById("loginCard").classList.remove("hidden");
+
+            document.getElementById("topText").textContent =
+                "Nuk keni llogari?";
+
+            const button = document.getElementById("topButton");
+            button.textContent = "Regjistrohu";
+            button.onclick = showSignup;
+        }
+
+        document.getElementById("signupForm").addEventListener(
+            "submit", function(event) {
+                event.preventDefault();
+
+                const name =
+                    document.getElementById("fullName").value.trim();
+
+                const password =
+                    document.getElementById("signupPassword").value;
+
+                const confirm =
+                    document.getElementById("confirmPassword").value;
+
+                const message =
+                    document.getElementById("signupMessage");
+
+                if (password !== confirm) {
+                    message.textContent =
+                        "Gabim: Fjalëkalimet nuk përputhen!";
+                    return;
+                }
+
+                message.textContent =
+                    "Formulari u plotësua me sukses, " + name +
+                    "! Për krijimin real të llogarisë duhet të lidhet një server.";
+            }
+        );
+
+        document.getElementById("loginForm").addEventListener(
+            "submit", function(event) {
+                event.preventDefault();
+
+                document.getElementById("loginMessage").textContent =
+                    "Formulari u plotësua. Për hyrje reale duhet të lidhet sistemi i autentikimit.";
+            }
+        );
+
+        function forgotPassword() {
+            alert(
+                "Për rikuperimin e fjalëkalimit duhet të konfigurohet " +
+                "një sistem me email."
+            );
+        }
+
+        function googleNotice() {
+            alert(
+                "Hyrja me Google kërkon konfigurimin e Google OAuth."
+            );
+        }
+    </script>
+
+</body>
+</html>
